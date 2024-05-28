@@ -1,11 +1,9 @@
 import time
 
-from takehome.exercise1and2.exercise1_losses_calculator import (
-    calculate_projected_losses,
-)
-from takehome.exercise3.generate_data import generate_dataset
+from exercise1_losses_calculator import calculate_projected_losses
+from generate_data import generate_dataset
 
-benchmark_ns = [5, 10, 100, 1000, 10000]
+benchmark_ns = [5, 10, 100, 1_000, 10_000, 1_000_000]
 
 
 def benchmark_losses(n: int) -> float:
@@ -24,7 +22,7 @@ def benchmark_losses(n: int) -> float:
     losses = calculate_projected_losses(data, years=1, method="complex")
     total_time = time.time() - start_time
     print(
-        f"Computed losses for {n} buildings in {total_time}s, rate of {total_time/n:0.3f} s/building"
+        f"Computed losses for {n} buildings in {total_time}s, rate of {total_time/n} s/building"
     )
     return total_time
 

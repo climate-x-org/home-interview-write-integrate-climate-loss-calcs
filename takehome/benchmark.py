@@ -1,6 +1,6 @@
 import time
 
-from exercise1_losses_calculator import calculate_projected_losses
+from exercise1and2_losses_calculator import calculate_projected_losses
 from generate_data import generate_dataset
 from matplotlib import pyplot as plt
 
@@ -22,14 +22,13 @@ def benchmark_losses(n: int) -> float:
     start_time = time.time()
     losses = calculate_projected_losses(data, years=1, method="complex")
     total_time = time.time() - start_time
-    print(
-        f"Computed losses for {n} buildings in {total_time}s, rate of {total_time/n} s/building"
-    )
+    print(f"{n}\t|{total_time}")
     return total_time
 
 
 def main():
     losses_time = []
+    print("n\t|time(s)\n---\t|---")
     for n in benchmark_ns:
         losses_time.append(benchmark_losses(n))
 

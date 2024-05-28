@@ -2,6 +2,7 @@ import time
 
 from exercise1_losses_calculator import calculate_projected_losses
 from generate_data import generate_dataset
+from matplotlib import pyplot as plt
 
 benchmark_ns = [5, 10, 100, 1_000, 10_000, 1_000_000]
 
@@ -28,8 +29,17 @@ def benchmark_losses(n: int) -> float:
 
 
 def main():
+    losses_time = []
     for n in benchmark_ns:
-        benchmark_losses(n)
+        losses_time.append(benchmark_losses(n))
+
+    # create figure
+    plt.subplots(1, 1)
+    plt.loglog(benchmark_ns, losses_time, ".-")
+    plt.title("Linear Scaling of Implementation")
+    plt.xlabel("n buildings")
+    plt.ylabel("runtime (s)")
+    plt.savefig("takehome/benchmark.png")
 
 
 if __name__ == "__main__":

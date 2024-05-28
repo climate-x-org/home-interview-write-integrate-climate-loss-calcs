@@ -148,7 +148,7 @@ def _format_and_print_losses(losses: dict, method: str = "") -> None:
 
 # Main execution function
 def main():
-    data = load_data("data.json")
+    data = load_data("data/data.json")
     years = 1
     print(f"Projected Losses Over {years} Year{'s' if years > 1 else ''}")
 

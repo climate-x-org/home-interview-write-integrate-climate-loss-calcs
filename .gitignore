@@ -35,3 +35,9 @@ terraform.rc
 
 # Ignore IDE Files
 .vscode/
+
+# Ignore local install files
+*.egg-info/
+
+# Ignore environments 
+.venv/

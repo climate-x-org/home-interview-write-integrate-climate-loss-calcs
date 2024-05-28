@@ -79,7 +79,7 @@ def simple_loss_estimate(
 
 def calculate_projected_losses(
     building_data: list[dict], years: Optional[int] = None
-) -> float:
+) -> dict:
     """
     Calculate total projected loss with additional complexity and errors
 
@@ -97,13 +97,14 @@ def calculate_projected_losses(
     elif years <= 0:
         raise ValueError("Years value needs to be strictly positive.")
 
-    total_loss = 0.0
+    losses = {}
     for building in building_data:
+        id = building["buildingId"]
         floor_area = building["floor_area"]
         construction_cost = building["construction_cost"]
         hazard_probability = building["hazard_probability"]
         inflation_rate = building["inflation_rate"]
-        total_loss += simple_loss_estimate(
+        losses[id] = simple_loss_estimate(
             years=years,
             floor_area=floor_area,
             construction_cost=construction_cost,
@@ -111,17 +112,24 @@ def calculate_projected_losses(
             inflation_rate=inflation_rate,
         )
 
-    return total_loss
+    return losses
 
 
 # Main execution function
 def main():
     data = load_data("data.json")
     years = 1
-    total_projected_loss = calculate_projected_losses(data, years)
-    print(
-        f"Total Projected Loss Over {years} Year{'s' if years > 1 else ''}: ${total_projected_loss:.2f}"
-    )
+    total_projected_losses = calculate_projected_losses(data, years)
+
+    print(f"Projected Loss Over {years} Year{'s' if years > 1 else ''}")
+    print("ID\t| Loss USD")
+    print("---\t| ---")
+    for id, loss in total_projected_losses.items():
+        print(f"{id}\t| ${loss:.2f}")
+    print("---\t| ---")
+
+    total_projected_loss = sum(total_projected_losses.values())
+    print(f"Total\t| ${total_projected_loss:.2f}")
 
 
 if __name__ == "__main__":

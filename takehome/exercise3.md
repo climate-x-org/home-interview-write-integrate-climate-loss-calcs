@@ -1,7 +1,7 @@
 # Exercise 3
 
 ## Scalability Analysis
-The algorithm as implemented in `exercise1and2_losses_calculator.py` under `potential_financial_losses_estimate` experiences linear scaling, as demonstrated in ![image of scaling](takehome/naieve_benchmark.png) and through experimentation.
+The algorithm as implemented in `exercise1and2_losses_calculator.py` under `potential_financial_losses_estimate` experiences linear scaling.
 
 For a set of runs of varying size (n), we experience the following runtimes: 
 n       |time(s)
@@ -12,6 +12,8 @@ n       |time(s)
 1000    |0.0005209445953369141
 10000   |0.00467681884765625
 1000000 |0.53981614112854
+
+![Scaling of naieve implementation](naieve_benchmark.png)
 
 The program is also linear in memory usage.
 
@@ -37,7 +39,7 @@ The examples detailed above for optimization can also be used to control memory 
 ## Example Code
 The vectorized example has been implemented [here](exercise4_example.py).
 
-While it still seems to scale linearly, it runs in less than 1% of the time of the original algorithm.
+While it still seems to scale linearly, it runs in less than 5% of the time of the original algorithm.
 
 For a set of runs of varying size (n), we experience the following runtimes: 
 

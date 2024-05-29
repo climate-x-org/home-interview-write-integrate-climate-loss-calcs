@@ -28,10 +28,10 @@ Another approach to improve the runtime here would be to vectorize the operation
 
 ## Resource Management
 
-While scaling an algorithm like this, it is important to consider the resource usage by monitoring the memory use and processing power.  The exact method for doing so will depend on the platform, but most cloud providers have dashboards showing memory and CPU usage (for example, see [Google Cloud docs](https://cloud.google.com/kubernetes-engine/docs/how-to/view-observability-metrics#metrics_for_clusters_and_workloads) and [AWS docs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Container-Insights-metrics-EKS.html), particularly `node_cpu_utilization` and `node_memory_utilization`)
+While scaling an algorithm like this, it is important to consider the resource usage by monitoring the memory use and processing power.  The exact method for doing so will depend on the platform, but most cloud providers have dashboards showing memory and CPU usage (for example, see [Google Cloud docs](https://cloud.google.com/kubernetes-engine/docs/how-to/view-observability-metrics#metrics_for_clusters_and_workloads) `CPU` and `Memory` and [AWS docs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Container-Insights-metrics-EKS.html) `node_cpu_utilization` and `node_memory_utilization`).
 
 As the number of buildings grows, the memory required will also grow if not kept in check.  One way to mitigate this is to use windowed reads and writes. By reading in the data in chunks then perform operations and append output to an existing file, you can strictly control the memory usage of the operation.
 
-
+The examples detailed above for optimization can also be used to control memory and CPU.  For example, setting the size and number of parallel chunks can help control CPU utilization.
 
 ## Example Code

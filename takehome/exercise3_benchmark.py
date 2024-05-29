@@ -38,7 +38,7 @@ def main():
     plt.title("Linear Scaling of Implementation")
     plt.xlabel("n buildings")
     plt.ylabel("runtime (s)")
-    plt.savefig("takehome/benchmark.png")
+    plt.savefig("takehome/naieve_benchmark.png")
 
 
 if __name__ == "__main__":

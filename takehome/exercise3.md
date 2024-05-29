@@ -1,7 +1,7 @@
 # Exercise 3
 
 ## Scalability Analysis
-The algorithm as implemented in `exercise1and2_losses_calculator.py` under `potential_financial_losses_estimate` experiences linear scaling, as demonstrated in ![image of scaling](takehome/benchmark.png) and through experimentation.
+The algorithm as implemented in `exercise1and2_losses_calculator.py` under `potential_financial_losses_estimate` experiences linear scaling, as demonstrated in ![image of scaling](takehome/naieve_benchmark.png) and through experimentation.
 
 For a set of runs of varying size (n), we experience the following runtimes: 
 n       |time(s)
@@ -35,3 +35,17 @@ As the number of buildings grows, the memory required will also grow if not kept
 The examples detailed above for optimization can also be used to control memory and CPU.  For example, setting the size and number of parallel chunks can help control CPU utilization.
 
 ## Example Code
+The vectorized example has been implemented [here](exercise4_example.py).
+
+While it still seems to scale linearly, it runs in less than 1% of the time of the original algorithm.
+
+For a set of runs of varying size (n), we experience the following runtimes: 
+
+n       |time(s)
+---     |---
+5       |4.982948303222656e-05
+10      |1.1920928955078125e-05
+100     |2.574920654296875e-05
+1000    |5.173683166503906e-05
+10000   |0.00013494491577148438
+1000000 |0.02812814712524414

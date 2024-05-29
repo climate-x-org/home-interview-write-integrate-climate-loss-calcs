@@ -51,3 +51,5 @@ n       |time(s)
 1000    |5.173683166503906e-05
 10000   |0.00013494491577148438
 1000000 |0.02812814712524414
+
+![Scaling of vectorized implementation](vectorized_benchmark.png)

@@ -4,7 +4,7 @@ import sys
 
 print(sys.argv)
 
-number_of_buildings = 100000
+number_of_buildings = 10000
 
 buildings = []
 for x in range(0, number_of_buildings):

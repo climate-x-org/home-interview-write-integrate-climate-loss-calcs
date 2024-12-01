@@ -46,28 +46,6 @@ def calculate_projected_losses(building_data, years):
 
     return total_loss
 
-def calculate_complex_loss(
-    construction_cost,
-    inflation_rate,
-    floor_area,
-    hazard_probability,
-    standard_discount_rate,
-    years
-):
-    # Calculate total inflation, over years
-    total_inflation = calculate_total_inflation(inflation_rate, years)
-    inflated_construction_cost = construction_cost * (math.e ** (total_inflation * floor_area / 1000))
-    
-    total_hazard_probability = calculate_total_hazard_probability(hazard_probability, years)
-    
-    future_loss_estimate = inflated_construction_cost * total_hazard_probability
-
-    # Calculate the discount rate, compounded over the years
-    total_discount = calculate_total_discount(standard_discount_rate, years)
-
-    return future_loss_estimate / total_discount
-
-
 # Main execution function
 def main():
     json_file = 'data.json'

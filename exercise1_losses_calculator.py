@@ -38,7 +38,12 @@ def calculate_projected_losses(building_data, years):
 
         # Calculate maintenance and total maintenance cost
         maintenance_cost = floor_area * 50  # assuming a flat rate per square meter
-        total_maintenance_cost = maintenance_cost / (1 + discount_rate)  
+
+        # Calculate the total maintenance cost, over the years, adjusted by inflation
+        total_maintenance_cost = maintenance_cost * years * total_inflation
+
+        # Discounting total maintenance cost, by today's value
+        discounted_tot_maintenance_cost = total_maintenance_cost / total_discount
 
         # Total loss calculation
         total_loss += present_value_loss + total_maintenance_cost

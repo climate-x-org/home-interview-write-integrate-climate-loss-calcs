@@ -2,7 +2,7 @@ import math
 import time
 
 from helpers import load_data, calculate_total_inflation, calculate_total_discount, calculate_total_hazard_probability
-from constants import discount_rate
+from constants import discount_rate, json_file
 
 
 def calculate_complex_loss(
@@ -48,7 +48,6 @@ def calculate_all_losses(
 
 # Main execution function
 def main():
-    json_file = 'data.json'
     print('Exercise 2:')
     print(f"Loading data from {json_file}")
     data = load_data(json_file)

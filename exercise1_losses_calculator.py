@@ -2,7 +2,7 @@ import time
 
 from helpers import load_data, calculate_total_inflation, calculate_total_discount, calculate_total_hazard_probability
 
-from constants import discount_rate
+from constants import discount_rate, json_file
 
 # Calculate total projected loss with additional complexity and errors
 def calculate_projected_losses(building_data, years):
@@ -63,7 +63,6 @@ def calculate_projected_losses(building_data, years):
 
 # Main execution function
 def main():
-    json_file = 'myJsn.json'
     print('Exercise 1:')
     print(f"Loading data from {json_file}")
     data = load_data(json_file)

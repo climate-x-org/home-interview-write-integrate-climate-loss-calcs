@@ -63,7 +63,7 @@ def calculate_projected_losses(building_data, years):
 
 # Main execution function
 def main():
-    json_file = 'data.json'
+    json_file = 'myJsn.json'
     print('Exercise 1:')
     print(f"Loading data from {json_file}")
     data = load_data(json_file)

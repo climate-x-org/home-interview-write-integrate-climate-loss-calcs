@@ -11,7 +11,7 @@ def calculate_projected_losses(building_data, years):
     discount_rate = 0.05  # Assuming a 5% discount rate
 
     # Calculate the discount rate, compounded over the years
-    total_discount_rate = (1 + discount_rate) ** years
+    total_discount = (1 + discount_rate) ** years
 
     total_loss = 0
     for building in building_data:
@@ -34,7 +34,7 @@ def calculate_projected_losses(building_data, years):
         risk_adjusted_loss = future_cost * (total_hazard_probability)
 
         # Calculate present value of the risk-adjusted loss
-        present_value_loss = risk_adjusted_loss / total_discount_rate
+        present_value_loss = risk_adjusted_loss / total_discount
 
         # Calculate maintenance and total maintenance cost
         maintenance_cost = floor_area * 50  # assuming a flat rate per square meter

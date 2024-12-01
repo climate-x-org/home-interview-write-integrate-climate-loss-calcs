@@ -1,5 +1,6 @@
 import math
 import time
+from concurrent.futures import ProcessPoolExecutor
 
 from helpers import load_data, calculate_total_inflation, calculate_total_discount, calculate_total_hazard_probability
 from constants import discount_rate, json_file
@@ -30,7 +31,7 @@ def calculate_complex_loss(
 def calculate_all_losses(
     building_data, years
 ):
-    total_loss = 0
+    building_losses = {}
     for building in building_data:
         building_loss_estimate = calculate_complex_loss(
             building['construction_cost'],
@@ -40,11 +41,13 @@ def calculate_all_losses(
             discount_rate,
             years,
         )
-        print(f"Estimated losses for building {building['buildingId']}: ${building_loss_estimate:.2f}")
+        building_losses[building['buildingId']] = building_loss_estimate
+    return building_losses
 
-        total_loss += building_loss_estimate
-    return total_loss
-
+# Split data into chunks
+def split_into_chunks(data, chunk_size):
+    for i in range(0, len(data), chunk_size):
+        yield data[i:i + chunk_size]
 
 # Main execution function
 def main():
@@ -55,7 +58,25 @@ def main():
     # Record the start time
     start_time = time.time()
 
-    total_loss = calculate_all_losses(data, 20)
+    years = 20
+
+    # chunks = list(split_into_chunks(data, 50000))
+    # all_losses = {}
+    # with ProcessPoolExecutor() as executor:
+    #     futures = [
+    #         executor.submit(calculate_all_losses, chunk, years)
+    #         for chunk in chunks
+    #     ]
+
+    #     for future in futures:
+    #         all_losses.update(future.result())
+
+    all_losses = calculate_all_losses(data, years)
+
+    total_loss = 0
+    for key, value in all_losses.items():
+        print(f"Estimated losses for building {key}: ${value:.2f}")
+        total_loss += value
 
     print(f"Estimated total losses for all buildings: ${total_loss:.2f}")
 

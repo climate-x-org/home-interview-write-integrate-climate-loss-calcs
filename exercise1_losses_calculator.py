@@ -56,10 +56,10 @@ def calculate_projected_losses(building_data, years):
         total_maintenance_cost = maintenance_cost * years * total_inflation
 
         # Discounting total maintenance cost, by today's value
-        discounted_tot_maintenance_cost = total_maintenance_cost / total_discount
+        discounted_total_maintenance_cost = total_maintenance_cost / total_discount
 
         # Total loss calculation
-        total_loss += present_value_loss + total_maintenance_cost
+        total_loss += present_value_loss + discounted_total_maintenance_cost
 
     return total_loss
 
@@ -87,7 +87,10 @@ def calculate_complex_loss(
 
 # Main execution function
 def main():
-    data = load_data('data.json')
+    json_file = 'data.json'
+    print(f"Loading data from ${json_file}")
+    data = load_data(json_file)
+    print('Exercise 1:')
     total_projected_loss = calculate_projected_losses(data, 10)
     print(f"Total Projected Loss: ${total_projected_loss:.2f}")
 

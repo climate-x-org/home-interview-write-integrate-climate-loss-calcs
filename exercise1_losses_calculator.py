@@ -1,4 +1,4 @@
-import math
+import time
 
 from helpers import load_data, calculate_total_inflation, calculate_total_discount, calculate_total_hazard_probability
 
@@ -67,8 +67,19 @@ def main():
     print('Exercise 1:')
     print(f"Loading data from {json_file}")
     data = load_data(json_file)
+
+    # Record the start time
+    start_time = time.time()
+
     total_projected_loss = calculate_projected_losses(data, 10)
     print(f"Total Projected Loss: ${total_projected_loss:.2f}")
+
+    # Record the end time
+    end_time = time.time()
+
+    # Calculate execution time
+    execution_time = (end_time - start_time) * 1000
+    print(f"Execution time: {execution_time:.2f} ms")
 
 if __name__ == '__main__':
     main()

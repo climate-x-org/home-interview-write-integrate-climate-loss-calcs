@@ -1,24 +1,7 @@
-import json
 import math
 
-# Load and parse the JSON data file
-def load_data(filepath):
-    with open(filepath, 'r') as file:
-        return json.load(file)
-    
-def calculate_total_inflation(inflation_rate, years):
+from helpers import load_data, calculate_total_inflation, calculate_total_discount, calculate_total_hazard_probability
 
-    return (1 + inflation_rate) ** years
-    
-def calculate_total_discount(discount_rate, years):
-
-    return (1 + discount_rate) ** years
-
-
-def calculate_total_hazard_probability(hazard_probability, years):
-
-    # This is the probability of a hazard happening, over the number of years given as input.
-    return 1 - (1 - hazard_probability) ** years
 
 # Calculate total projected loss with additional complexity and errors
 def calculate_projected_losses(building_data, years):
@@ -88,9 +71,9 @@ def calculate_complex_loss(
 # Main execution function
 def main():
     json_file = 'data.json'
-    print(f"Loading data from ${json_file}")
-    data = load_data(json_file)
     print('Exercise 1:')
+    print(f"Loading data from {json_file}")
+    data = load_data(json_file)
     total_projected_loss = calculate_projected_losses(data, 10)
     print(f"Total Projected Loss: ${total_projected_loss:.2f}")
 

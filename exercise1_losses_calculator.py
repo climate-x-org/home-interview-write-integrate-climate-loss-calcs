@@ -12,7 +12,7 @@ def calculate_projected_losses(building_data, years):
     for building in building_data:
         floor_area = building['floor_area']
         construction_cost = building['construction_cost']
-        hazard_probability = building['hazard_probability']
+        yearly_hazard_probability = building['hazard_probability']
         inflation_rate = building['inflation_rate']
 
         # Calculate total inflation, over years
@@ -21,8 +21,12 @@ def calculate_projected_losses(building_data, years):
         # Calculate future cost
         future_cost = construction_cost * total_inflation
 
+        # Calculate total hazard probability, over years
+        # This is the probability of a hazard happening, over the number of years given as input.
+        total_hazard_probability = 1 - (1 - yearly_hazard_probability) ** years
+
         # Calculate risk-adjusted loss
-        risk_adjusted_loss = future_cost * (1 - hazard_probability) 
+        risk_adjusted_loss = future_cost * (total_hazard_probability)
 
         # Calculate present value of the risk-adjusted loss
         discount_rate = 0.05  # Assuming a 5% discount rate

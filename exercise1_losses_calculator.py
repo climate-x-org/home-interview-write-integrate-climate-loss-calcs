@@ -6,6 +6,22 @@ from constants import discount_rate
 
 # Calculate total projected loss with additional complexity and errors
 def calculate_projected_losses(building_data, years):
+    
+    # Considerations about estimating the loss of money caused by a hazard event VS
+    # estimating the loss of money due to the maintenance of a building:
+    #
+    # We assume that a "hazard event" would always cause the building to be completely destroyed,
+    # so all of its value would be lost. This has to be adjusted by the probability of it happening
+    # though, because it may or may not happen.
+    #
+    # Conversely, maintenance costs can be considered as a "loss" that will happen for sure
+    # Because we know that every year, each building will require some maintenance, for which 
+    # we know the cost.
+    #
+    # This is of course an over semplification on many fronts. The most important one 
+    # is the fact that is a building collapses, its maintenance costs will become 0 for all 
+    # of the following years.
+
     # Calculate the discount rate, compounded over the years
     total_discount = calculate_total_discount(discount_rate, years)
 

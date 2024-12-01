@@ -86,3 +86,4 @@ Develop a small React frontend application during the live interview that interf
 - Complete Exercises 1, 2, and 3 at home and submit them before the interview.
 - Exercise 4 will be conducted live. Familiarize yourself with the necessary technologies and prepare for live coding.
 - Document any assumptions or important decisions in your approach.
+

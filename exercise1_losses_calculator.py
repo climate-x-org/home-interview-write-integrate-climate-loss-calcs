@@ -2,11 +2,10 @@ import math
 
 from helpers import load_data, calculate_total_inflation, calculate_total_discount, calculate_total_hazard_probability
 
+from constants import discount_rate
 
 # Calculate total projected loss with additional complexity and errors
 def calculate_projected_losses(building_data, years):
-    discount_rate = 0.05  # Assuming a 5% discount rate
-
     # Calculate the discount rate, compounded over the years
     total_discount = calculate_total_discount(discount_rate, years)
 

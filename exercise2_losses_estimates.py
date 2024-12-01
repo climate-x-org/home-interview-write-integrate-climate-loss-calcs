@@ -1,6 +1,7 @@
 import math
 
 from helpers import load_data, calculate_total_inflation, calculate_total_discount, calculate_total_hazard_probability
+from constants import discount_rate
 
 
 def calculate_complex_loss(
@@ -28,7 +29,6 @@ def calculate_complex_loss(
 def calculate_all_losses(
     building_data, years
 ):
-    standard_discount_rate = 0.05  # Assuming a 5% discount rate
     total_loss = 0
     for building in building_data:
         building_loss_estimate = calculate_complex_loss(
@@ -36,7 +36,7 @@ def calculate_all_losses(
             building['inflation_rate'],
             building['floor_area'],
             building['hazard_probability'],
-            standard_discount_rate,
+            discount_rate,
             years,
         )
         print(f"Estimated losses for building {building['buildingId']}: ${building_loss_estimate:.2f}")

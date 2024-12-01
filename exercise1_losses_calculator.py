@@ -7,7 +7,7 @@ def load_data(filepath):
         return json.load(file)
 
 # Calculate total projected loss with additional complexity and errors
-def calculate_projected_losses(building_data):
+def calculate_projected_losses(building_data, years):
     total_loss = 0
     for building in building_data:
         floor_area = building['floor_area']
@@ -15,8 +15,11 @@ def calculate_projected_losses(building_data):
         hazard_probability = building['hazard_probability']
         inflation_rate = building['inflation_rate']
 
+        # Calculate total inflation, over years
+        total_inflation = ((1 + inflation_rate) ** years)
+
         # Calculate future cost
-        future_cost = construction_cost * (1 + inflation_rate)  
+        future_cost = construction_cost * total_inflation
 
         # Calculate risk-adjusted loss
         risk_adjusted_loss = future_cost * (1 - hazard_probability) 
@@ -37,7 +40,7 @@ def calculate_projected_losses(building_data):
 # Main execution function
 def main():
     data = load_data('data.json')
-    total_projected_loss = calculate_projected_losses(data)
+    total_projected_loss = calculate_projected_losses(data, 10)
     print(f"Total Projected Loss: ${total_projected_loss:.2f}")
 
 if __name__ == '__main__':

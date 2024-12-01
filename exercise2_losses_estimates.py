@@ -60,7 +60,7 @@ def main():
 
     years = 20
 
-    # chunks = list(split_into_chunks(data, 50000))
+    # chunks = list(split_into_chunks(data, 20000))
     # all_losses = {}
     # with ProcessPoolExecutor() as executor:
     #     futures = [
@@ -73,6 +73,9 @@ def main():
 
     all_losses = calculate_all_losses(data, years)
 
+    # Record the end time
+    end_time = time.time()
+
     total_loss = 0
     for key, value in all_losses.items():
         print(f"Estimated losses for building {key}: ${value:.2f}")
@@ -80,8 +83,6 @@ def main():
 
     print(f"Estimated total losses for all buildings: ${total_loss:.2f}")
 
-    # Record the end time
-    end_time = time.time()
 
     # Calculate execution time
     execution_time = (end_time - start_time) * 1000
